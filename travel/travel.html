@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelPlan - Your Travel Scheduling System</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i data-lucide="plane" class="nav-icon"></i>
+                <span class="brand-text">TravelPlan</span>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="search">Search Trips</a>
+                <a href="#" class="nav-link" data-page="bookings">My Bookings</a>
+                <a href="#" class="nav-link" data-page="packages">Packages</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn-login" id="loginBtn">Login</button>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Section -->
+        <section id="home" class="page-section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Plan Your Perfect Journey</h1>
+                    <p class="hero-subtitle">Discover amazing destinations and create unforgettable memories with our comprehensive travel scheduling system</p>
+                    
+                    <!-- Quick Search Form -->
+                    <div class="search-widget">
+                        <form id="quickSearchForm" class="search-form">
+                            <div class="search-row">
+                                <div class="form-group">
+                                    <label class="form-label">From</label>
+                                    <input type="text" class="form-input" placeholder="Departure city" id="fromCity" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">To</label>
+                                    <input type="text" class="form-input" placeholder="Destination city" id="toCity" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Departure</label>
+                                    <input type="date" class="form-input" id="departureDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Return</label>
+                                    <input type="date" class="form-input" id="returnDate">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn-primary">
+                                        <i data-lucide="search"></i>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="container">
+                    <h2 class="section-title">Why Choose TravelPlan?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i data-lucide="calendar" class="feature-icon"></i>
+                            <h3>Smart Scheduling</h3>
+                            <p>AI-powered itinerary planning that optimizes your travel schedule</p>
+                        </div>
+                        <div class="feature-card">
+                            <i data-lucide="map-pin" class="feature-icon"></i>
+                            <h3>Local Insights</h3>
+                            <p>Get recommendations from locals and discover hidden gems</p>
+                        </div>
+                        <div class="feature-card">
+                            <i data-lucide="shield-check" class="feature-icon"></i>
+                            <h3>Secure Booking</h3>
+                            <p>Safe and secure payment processing with 24/7 support</p>
+                        </div>
+                        <div class="feature-card">
+                            <i data-lucide="smartphone" class="feature-icon"></i>
+                            <h3>Mobile Ready</h3>
+                            <p>Access your travel plans anywhere with our responsive design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Results Section -->
+        <section id="search" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Search Results</h2>
+                
+                <!-- Search Filters -->
+                <div class="filters-section">
+                    <h3>Filter Results</h3>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="form-label">Price Range</label>
+                            <input type="range" class="price-range" min="0" max="5000" value="2500" id="priceFilter">
+                            <span class="price-display">$0 - $2500</span>
+                        </div>
+                        <div class="filter-group">
+                            <label class="form-label">Duration</label>
+                            <select class="form-input" id="durationFilter">
+                                <option value="">Any Duration</option>
+                                <option value="1-3">1-3 Days</option>
+                                <option value="4-7">4-7 Days</option>
+                                <option value="8+">8+ Days</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="form-label">Travel Type</label>
+                            <select class="form-input" id="typeFilter">
+                                <option value="">All Types</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="relaxation">Relaxation</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="business">Business</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Grid -->
+                <div class="results-grid" id="resultsGrid">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section id="bookings" class="page-section">
+            <div class="container">
+                <h2 class="section-title">My Bookings</h2>
+                <div class="bookings-container" id="bookingsContainer">
+                    <!-- Bookings will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Travel Packages</h2>
+                <div class="packages-grid" id="packagesGrid">
+                    <!-- Packages will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-item">
+                            <i data-lucide="phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <span>info@travelplan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <span>123 Travel Street, Adventure City, AC 12345</span>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to TravelPlan</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book Your Trip</h3>
+                <button class="modal-close" id="closeBookingModal">&times;</button>
+            </div>
+            <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Travelers</label>
+                        <select class="form-input" required>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5+">5+ People</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Special Requests</label>
+                    <textarea class="form-input" rows="3" placeholder="Any special requirements or requests..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i data-lucide="check-circle" class="toast-icon"></i>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
